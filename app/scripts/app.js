@@ -13,13 +13,23 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
+    'pascalprecht.translate',
   ])
-  .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
+  .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider','$translateProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider,$translateProvider) {
     
     $ocLazyLoadProvider.config({
       debug:false,
       events:true,
     });
+    
+  	
+  	$translateProvider.useStaticFilesLoader({
+  		prefix: '/scripts/i18n/',
+  		suffix: '.json'
+	});
+	
+  	$translateProvider.preferredLanguage('pt-br');
+  	$translateProvider.useSanitizeValueStrategy('escapeParameters');
 
     $urlRouterProvider.otherwise('/dashboard/home');
 
